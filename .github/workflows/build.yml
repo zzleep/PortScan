@@ -1,0 +1,68 @@
+name: Build
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  build-windows:
+    runs-on: windows-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Setup MinGW
+      uses: egor-tensin/setup-mingw@v2
+      with:
+        platform: x64
+    
+    - name: Build CLI
+      run: |
+        cd cli
+        g++ -std=c++17 -O2 -o port_scanner.exe main.cpp PortScanner.cpp -lws2_32
+    
+    - name: Download ImGui
+      run: |
+        cd gui_imgui
+        powershell -ExecutionPolicy Bypass -File download_imgui.ps1
+    
+    - name: Build GUI
+      run: |
+        cd gui_imgui
+        ./build_imgui.bat
+    
+    - name: Upload CLI Artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: port-scanner-cli-windows
+        path: cli/port_scanner.exe
+    
+    - name: Upload GUI Artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: port-scanner-gui-windows
+        path: gui_imgui/PortScannerGUI.exe
+
+  build-linux:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Install Dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y build-essential libgl1-mesa-dev libglu1-mesa-dev
+    
+    - name: Build CLI
+      run: |
+        cd cli
+        g++ -std=c++17 -O2 -pthread -o port_scanner main.cpp PortScanner.cpp
+    
+    - name: Upload CLI Artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: port-scanner-cli-linux
+        path: cli/port_scanner

@@ -1,0 +1,76 @@
+# Ignore compiled binaries
+*.exe
+*.o
+*.obj
+*.dll
+*.so
+*.dylib
+*.a
+*.lib
+
+# Ignore IDE and editor files
+.vscode/
+.vs/
+.idea/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.swp
+*.swo
+*~
+
+# Ignore build directories
+build/
+bin/
+obj/
+out/
+Debug/
+Release/
+x64/
+x86/
+
+# Ignore Qt build files
+*.pro.user
+*.autosave
+moc_*.cpp
+qrc_*.cpp
+ui_*.h
+Makefile
+.qmake.stash
+
+# Ignore temporary files
+*.tmp
+*.temp
+*.log
+*.bak
+*.cache
+
+# Ignore OS files
+.DS_Store
+
+# Ignore helper/temporary documentation
+GITHUB_READY.md
+OPTIMIZATION_SUMMARY.md
+cleanup.bat
+organize.bat
+
+# Keep only essential files in root
+# Everything else should be in cli/ or gui_imgui/ folders
+Thumbs.db
+desktop.ini
+
+# Ignore scan results
+scan_results_*.txt
+scan_results_*.csv
+
+# Ignore ImGui ini file (user preferences)
+imgui.ini
+
+# Keep imgui folder but ignore if downloaded
+# imgui/
+
+# Ignore package managers
+node_modules/
+vendor/
+packages/
