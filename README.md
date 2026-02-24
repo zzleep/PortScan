@@ -6,7 +6,7 @@
 
 A fast, modern multi-threaded port scanner with both CLI and GUI interfaces. Scan thousands of ports in seconds with an elegant, user-friendly interface.
 
-![Screenshot](https://via.placeholder.com/800x400/13141f/2196F3?text=Port+Scanner+GUI)
+![Screenshot](docs/screenshots/GUI.JPG)
 
 ## ✨ Features
 
